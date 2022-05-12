@@ -3,37 +3,45 @@ import { useDispatch, useSelector } from "react-redux";
 import AuthButton from "./AuthButton";
 import { FcGoogle } from "react-icons/fc";
 import { AiOutlineClose } from "react-icons/ai";
-import { closeModal } from "../redux/features/authSlice";
-import {
-  createUserWithEmailAndPassword,
-  signInWithEmailAndPassword,
-} from "firebase/auth";
+import { closeSignUpModal } from "../redux/features/authSlice";
+import { createUserWithEmailAndPassword, updateProfile } from "firebase/auth";
 import { auth } from "../firebase/firebase";
 
 const AuthModal = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("");
+  console.log(auth.currentUser);
 
-  const authModal = useSelector((state) => state.auth.authModal);
+  const signUpModal = useSelector((state) => state.auth.signUpModal);
   const dispatch = useDispatch();
 
   const signUp = () => {
-    signInWithEmailAndPassword(auth, email, password);
-    dispatch(closeModal());
+    createUserWithEmailAndPassword(auth, email, password).then((userCred) => {
+      const { user } = userCred;
+      updateProfile(user, {
+        displayName: username,
+      });
+    });
+
+    dispatch(closeSignUpModal());
+    setEmail("");
+    setPassword("");
+    setUsername("");
   };
 
   return (
     <div
       className={`${
-        authModal ? "fixed" : "hidden"
+        signUpModal ? "fixed" : "hidden"
       }  inset-0 bg-black/40 flex justify-center items-center`}
     >
       <div className="w-[95%] md:w-[60%] h-[80%] m-auto bg-white p-5 rounded-md">
         <div className="flex justify-between">
-          <h1 className="text-3xl">Log in</h1>
+          <h1 className="text-3xl">Sign up</h1>
           <AiOutlineClose
             className="text-2xl"
-            onClick={() => dispatch(closeModal())}
+            onClick={() => dispatch(closeSignUpModal())}
           />
         </div>
         <p className="my-5 text-sm">
@@ -48,6 +56,14 @@ const AuthModal = () => {
         </div>
         <div className="text-center my-10">or</div>
         <div className="space-y-7">
+          <input
+            required
+            type="text"
+            placeholder="Username"
+            value={username}
+            className="input-auth"
+            onChange={(e) => setUsername(e.target.value)}
+          />
           <input
             required
             type="email"
@@ -66,7 +82,7 @@ const AuthModal = () => {
           />
 
           <AuthButton loginmodal onClick={signUp}>
-            Log in
+            Sign up
           </AuthButton>
         </div>
       </div>
