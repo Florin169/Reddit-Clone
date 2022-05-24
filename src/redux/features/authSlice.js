@@ -5,6 +5,7 @@ const initialState = {
   signUpModal: false,
   communityModal: false,
   userModal: false,
+  createCommunityModal: false,
   user: {},
 };
 
@@ -36,6 +37,14 @@ const authSlice = createSlice({
       state.userModal = !state.userModal;
     },
 
+    openCreateCommunityModal: (state) => {
+      state.createCommunityModal = true;
+    },
+
+    closeCreateCommunityModal: (state) => {
+      state.createCommunityModal = false;
+    },
+
     userInfo: (state, action) => {
       state.user = action.payload;
     },
@@ -50,6 +59,8 @@ export const {
   userInfo,
   toggleCommunityModal,
   toggleUserModal,
+  openCreateCommunityModal,
+  closeCreateCommunityModal,
 } = authSlice.actions;
 
 export default authSlice.reducer;

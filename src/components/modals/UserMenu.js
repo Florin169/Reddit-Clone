@@ -2,7 +2,7 @@ import React from "react";
 import { GrLogout } from "react-icons/gr";
 import { useSelector } from "react-redux";
 import { signOut } from "firebase/auth";
-import { auth } from "../firebase/firebase";
+import { auth } from "../../firebase/firebase";
 
 const UserMenu = () => {
   const toggle = useSelector((state) => state.auth.userModal);

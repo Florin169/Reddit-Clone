@@ -1,5 +1,4 @@
 import React from "react";
-import CustomBtn from "./CustomBtn";
 import { BsSearch, BsBell } from "react-icons/bs";
 import { BiUser } from "react-icons/bi";
 import { IoIosArrowDown } from "react-icons/io";
@@ -11,12 +10,13 @@ import {
   toggleUserModal,
   openSignUpModal,
 } from "../redux/features/authSlice";
-import AuthModal from "./AuthModal";
-import SignUpModal from "./SignUpModal";
+import AuthModal from "./modals/AuthModal";
+import SignUpModal from "./modals/SignUpModal";
 import { HiOutlineChat } from "react-icons/hi";
 import { AiOutlinePlus, AiTwotoneHome } from "react-icons/ai";
-import CommunityMenu from "./CommunityMenu";
-import UserMenu from "./UserMenu";
+import CommunityMenu from "./modals/CommunityMenu";
+import UserMenu from "./modals/UserMenu";
+import CreateCommunityModal from "./modals/CreateCommunityModal";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -60,12 +60,19 @@ const Navbar = () => {
           </div>
         ) : (
           <div className="hidden md:flex space-x-10">
-            <CustomBtn login onClick={() => dispatch(openModal())}>
+            <button
+              className="outline w-[110px] h-[28px]"
+              login
+              onClick={() => dispatch(openModal())}
+            >
               Log in
-            </CustomBtn>
-            <CustomBtn onClick={() => dispatch(openSignUpModal())}>
+            </button>
+            <button
+              className="solid w-[110px] h-[28px]"
+              onClick={() => dispatch(openSignUpModal())}
+            >
               Sign up
-            </CustomBtn>
+            </button>
           </div>
         )}
         <div
@@ -93,6 +100,7 @@ const Navbar = () => {
       <SignUpModal />
       <CommunityMenu />
       <UserMenu />
+      <CreateCommunityModal />
     </div>
   );
 };

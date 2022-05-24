@@ -13,7 +13,7 @@ const Premium = () => {
           </p>
         </div>
       </div>
-      <button className="w-full h-8 rounded-full bg-red-500 font-bold text-white mb-2">
+      <button className="w-full h-8 solid bg-orange-600 hover:bg-red-600 mb-2">
         Try now
       </button>
     </div>
