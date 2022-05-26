@@ -16,10 +16,14 @@
   }
 
   .solid {
-    @apply bg-blue-400 text-white rounded-full font-bold transition duration-300 hover:bg-blue-700;
+    @apply bg-blue-400 text-white rounded-full font-medium transition duration-300 hover:bg-blue-700 text-sm;
   }
 
   .outline {
-    @apply rounded-full  border-blue-500 bg-transparent text-blue-500 font-bold transition duration-300 hover:bg-gray-50;
+    @apply rounded-full  border-blue-500 bg-transparent text-blue-500  transition duration-300 hover:bg-gray-50 text-sm font-medium;
+  }
+
+  .post-input {
+    @apply rounded-md border border-gray-200 focus:border-gray-500 outline-none px-5 bg-transparent text-sm;
   }
 }

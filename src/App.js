@@ -7,6 +7,7 @@ import { userInfo } from "./redux/features/authSlice";
 import { auth } from "./firebase/firebase";
 import { Route, Routes } from "react-router-dom";
 import CommunityPage from "./pages/r/CommunityPage";
+import CreatePostPage from "./pages/r/CreatePostPage";
 
 const App = () => {
   const dispatch = useDispatch();
@@ -23,6 +24,7 @@ const App = () => {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/:community" element={<CommunityPage />} />
+        <Route path="/:community/submit" element={<CreatePostPage />} />
       </Routes>
     </div>
   );

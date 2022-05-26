@@ -1,13 +1,9 @@
-import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
+import React from "react";
 import About from "../../components/About";
 import Post from "../../components/Post";
 import PostBar from "../../components/PostBar";
-import { db } from "../../firebase/firebase";
-import { doc, getDoc } from "firebase/firestore";
 import NotFound from "../../components/community/NotFound";
 import { FaRedditAlien } from "react-icons/fa";
-import { getSingleCommunity } from "../../redux/features/communitySlice";
 import useCommunityData from "../../hooks/useCommunityData";
 import { useSelector } from "react-redux";
 
@@ -64,7 +60,7 @@ const CommunityPage = () => {
 
       <div className="flex w-full md:w-[60%] m-auto">
         <div>
-          <PostBar />
+          <PostBar community={singleCommunity.id} />
           <Post />
         </div>
         <About />
